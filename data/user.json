@@ -1,0 +1,13 @@
+[{
+        "name": "Hoa",
+        "email": "hoa@gmail.com",
+        "password": "123456",
+        "isAdmin": false
+    },
+    {
+        "name": "Han",
+        "email": "han@gmail.com",
+        "password": "123456",
+        "isAdmin": true
+    }
+]

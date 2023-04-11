@@ -1,0 +1,63 @@
+[
+    {
+      "user": 1,
+      "orderItems": [
+        {
+          "product": 1,
+          "quantity": 2
+        },
+        {
+          "product": 2,
+          "quantity": 1
+        }
+      ],
+      "shippingAddress": {
+        "address": "123 Main St",
+        "city": "Los Angeles",
+        "postalCode": "90001",
+        "country": "USA"
+      },
+      "paymentMethod": "PayPal",
+      "paymentResult": {
+        "id": "PAY-12345678",
+        "status": "COMPLETED",
+        "update_time": "2023-03-28T20:22:31Z",
+        "email_address": "johndoe@gmail.com"
+      },
+      "itemsPrice": 7500,
+      "taxPrice": 750,
+      "shippingPrice": 250,
+      "totalPrice": 8500,
+      "isPaid": true,
+      "paidAt": "2023-03-28T20:22:31Z",
+      "isDelivered": false
+    },
+    {
+      "user": 2,
+      "orderItems": [
+        {
+          "product": 2,
+          "quantity": 1
+        },
+        {
+          "product": 3,
+          "quantity": 3
+        }
+      ],
+      "shippingAddress": {
+        "address": "456 First St",
+        "city": "New York",
+        "postalCode": "10001",
+        "country": "USA"
+      },
+      "itemsPrice": 6300,
+      "taxPrice": 630,
+      "shippingPrice": 70,
+      "totalPrice": 7000,
+      "isPaid": true,
+      "paidAt": "2023-03-29T10:12:30Z",
+      "isDelivered": true,
+      "deliveredAt": "2023-03-30T11:24:45Z"
+    }
+  ]
+  

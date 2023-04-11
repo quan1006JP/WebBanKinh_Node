@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+</head>
+
+<body>
+
+    <div class="cart-page">
+        <div class="cart-page-container">
+
+            <!--For cart page-->
+            <div class="cart-page-header">
+                <div class="cart-header-notice">
+                    <span class="cart-header-icon"><i class="fa fa-check" aria-hidden="true"></i></span>
+                    <span style="margin-top: 4px; margin-left: 3px;" class="cart-header-text">Giỏ hàng của bạn</span>
+                </div>
+                <div class="cart-header-footer">
+                    <form action="/product" method="GET">
+                        <button class="cart-header-cta blue-bg checkout" type="submit">Tiếp tục mua sắm</button>
+                    </form>
+                </div>
+            </div>
+            <!--For cart page and thank you page-->
+            <div class="cart-page-table">
+                <table class="cart-table-product">
+                    <thead>
+                        <tr class="cart-table-header">
+                            <th class="cart-table-img">Ảnh sản phẩm</th>
+                            <th class="cart-table-desktop cart-table-product-name">Tên sản phẩm</th>
+                            <th class="cart-table-desktop cart-table-size">Đơn giá</th>
+                            <th class="cart-table-desktop cart-table-size">Số lượng</th>
+                            <th class="cart-table-size right-text-mobile">Thành giá</th>
+                            <th class="cart-table-desktop cart-table-small-size">Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (products && products.length > 0) { %>
+                            <% for (const product of products) { %>
+
+                                <tr class="cart-table-content">
+                                    <td class="cart-table-image-info"><img src="<%= product.item.image %>"></td>
+
+                                    <td class="bold-text red-text cart-table-desktop">
+                                        <a style="text-decoration: none;" href="/products/<%= product.item._id %>">
+                                            <%= product.item.name %>
+                                    </td>
+                                    <td class="cart-table-desktop">$
+                                        <%= product.item.price %>
+                                    </td>
+                                    <td style="text-align: center;" class="cart-table-desktop">
+                                        <!-- <span class="bold-text"><%= product.qty %></span> -->
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <form method="post" action="/cart/reduce/<%= product.item._id %>">
+                                                    <button style="background-color: #000; color: #fff;" class="btn btn-outline-secondary" type="submit">-</button>
+                                                </form>
+                                            </div>
+                                            <input style="width: 27px;" type="number" class="form-control text-center" value="<%= product.qty %>" min="1" max="99" readonly>
+                                            <div class="input-group-append">
+                                                <form method="post" action="/cart/add/<%= product.item._id %>">
+                                                    <button style="background-color: #000; color: #fff;" class="btn btn-outline-secondary" type="submit">+</button>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                    <td class="bold-text red-text cart-table-desktop">
+                                        <%= product.item.price*product.qty %>
+                                    </td>
+                                    <td class="cart-table-desktop">
+                                        <form method="post" action="/cart/remove/<%= product.item._id %>">
+                                            <button type="submit" class="buton_remove"><i style="font-size: 23px;" class="ti ti-trash"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% }; %>
+                                    <tr class="cart-table-content cart-table-payment-content">
+                                        <td style="height: 40px;" class="cart-table-payment-detail" colspan="6">
+                                            <span style="float: right; margin-right: 30px; font-size: 20px;" class="bold-text red-text">
+                  Tổng tiền: $
+                  <% let total = 0; %>
+                  <% products.forEach(function(product) { 
+                    total += product.price;
+                  }); %>
+                  <%= total %>
+                </span>
+                                        </td>
+                                    </tr>
+                                    <% } else { %>
+                                        <tr>
+                                            <td colspan="5">Chưa có sản phẩm nào trong giỏ hàng.</td>
+                                        </tr>
+                                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cart-block-right">
+                <div class="cart-header-footer">
+                    <form action="/cart/checkout" method="GET">
+                        <button class="cart-header-cta blue-bg checkout" type="submit">Đặt hàng</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+
+<style>
+    .input-group {
+        display: flex;
+        align-items: center;
+    }
+    
+    .input-group-btn {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+    }
+    
+    .input-group-btn button {
+        border-radius: 0;
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
+        line-height: 1;
+        padding: 5px;
+        text-align: center;
+    }
+    
+    .input-group-btn button:first-child {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 0;
+    }
+    
+    .input-group-btn button:last-child {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 0;
+    }
+    
+    .input-quantity {
+        flex: 1;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 10px;
+    }
+    
+    .buton_remove {
+        padding: 0;
+        height: 20px;
+        background: #f1f1f1;
+        border: none;
+        color: red;
+    }
+    
+    .buton_remove:hover {
+        cursor: pointer;
+    }
+    
+    .cart-page {
+        margin-top: 20px;
+        color: #3a3a3a;
+        font-family: "Poppins", sans-serif;
+        font-size: 14px;
+    }
+    
+    .cart-page .cart-page-container {
+        max-width: 1150px;
+        margin: 0 auto;
+    }
+    
+    .cart-page .cart-page-container .bold-text {
+        font-weight: 700;
+    }
+    
+    .cart-page .cart-page-container .red-bg {
+        background: #d32f2f;
+    }
+    
+    .cart-page .cart-page-header {
+        padding: 15px;
+        margin-bottom: 15px;
+        background: #f1f1f1;
+    }
+    
+    @media screen and (min-width: 768px) {
+        .cart-page .cart-page-header {
+            margin-bottom: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+    
+    .cart-page .cart-header-notice {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+    }
+    
+    @media screen and (min-width: 768px) {
+        .cart-page .cart-header-notice {
+            margin-bottom: 0;
+        }
+    }
+    
+    .cart-page .cart-footer-discount {
+        display: flex;
+    }
+    
+    .cart-page .cart-header-text {
+        display: inline-block;
+        margin-right: 3px;
+    }
+    
+    .cart-page .cart-header-icon {
+        width: 23px;
+        height: 23px;
+        margin-right: 3px;
+        display: inline-block;
+        position: relative;
+        background: #6aca6b;
+        border-radius: 50%;
+    }
+    
+    .cart-page .cart-header-icon i {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        color: #ffffff;
+        font-size: 18px;
+        transform: translate3d(-50%, -50%, 0);
+    }
+    
+    .cart-page .red-text {
+        color: #d32f2f;
+    }
+    
+    .cart-page .cart-header-cta {
+        padding: 8px 20px;
+        display: inline-block;
+        background: #000;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 7px;
+    }
+    
+    @media screen and (max-width: 767px) {
+        .cart-page .cart-header-cta {
+            display: block;
+            text-align: center;
+        }
+    }
+    
+    .cart-page .cart-header-cta.cart-cta {
+        width: 100px;
+        text-align: center;
+    }
+    
+    .cart-page table.cart-table-product {
+        width: 100%;
+        max-width: 1150px;
+        margin-bottom: 20px;
+        display: block;
+        border-collapse: collapse;
+    }
+    
+    @media screen and (min-width: 768px) {
+        .cart-page table.cart-table-product {
+            margin-bottom: 30px;
+        }
+    }
+    
+    .cart-page table.cart-table-product tbody {
+        margin-bottom: 15px;
+        border: 2px solid #f1f1f1;
+        border-top: 0;
+    }
+    
+    @media screen and (max-width: 1023px) {
+        .cart-page table.cart-table-product tbody .cart-table-payment-content {
+            margin-top: 5px;
+        }
+    }
+    
+    .cart-page table.cart-table-product tbody .cart-table-payment-content:hover {
+        background: #fff;
+    }
+    
+    .cart-page table.cart-table-product tbody .cart-table-payment-content .cart-table-plan-payment {
+        padding: 15px 0;
+        background: #f1f1f1;
+        margin-bottom: 15px;
+    }
+    
+    @media screen and (max-width: 1023px) {
+        .cart-page table.cart-table-product tbody .cart-table-payment-content .cart-table-plan-payment {
+            padding: 5px 0;
+        }
+    }
+    
+    .cart-page table.cart-table-product tbody .cart-table-payment-content .cart-table-plan-payment:after {
+        content: "";
+        width: calc(100% - 30px);
+        height: 2px;
+        position: absolute;
+        left: 15px;
+        bottom: 0px;
+        background: #f1f1f1;
+    }
+    
+    .cart-page table.cart-table-product tbody .cart-table-payment-content .cart-table-plan-payment .cart-plan-payment-container table {
+        width: 100%;
+    }
+    
+    .cart-page table.cart-table-product tbody .cart-table-payment-content .cart-table-plan-payment .cart-plan-payment-container table tr:hover {
+        background: #f1f1f1;
+    }
+    
+    .cart-page table.cart-table-product tbody .cart-table-payment-content .cart-table-plan-payment .cart-plan-payment-container table th,
+    .cart-page table.cart-table-product tbody .cart-table-payment-content .cart-table-plan-payment .cart-plan-payment-container table td {
+        padding: 5px 0;
+    }
+    
+    @media screen and (max-width: 1023px) {
+        .cart-page table.cart-table-product tbody .cart-table-payment-content .cart-table-plan-payment .cart-plan-payment-container table th,
+        .cart-page table.cart-table-product tbody .cart-table-payment-content .cart-table-plan-payment .cart-plan-payment-container table td {
+            padding: 5px 15px;
+            display: block;
+        }
+    }
+    
+    .cart-page table.cart-table-product tbody .cart-table-payment-content .cart-table-plan-payment .cart-plan-payment-container table td:after {
+        content: none;
+    }
+    
+    .cart-page table.cart-table-product tr:last-child .cart-table-plan-payment:after {
+        content: none;
+    }
+    
+    .cart-page table.cart-table-product tr:hover {
+        background: #f1f1f1;
+    }
+    
+    @media screen and (max-width: 1023px) {
+        .cart-page table.cart-table-product tr:hover {
+            background: #fff;
+        }
+    }
+    
+    .cart-page table.cart-table-product tr.cart-table-header {
+        background: #111;
+    }
+    
+    .cart-page table.cart-table-product tr.cart-table-header th {
+        color: #ffffff;
+    }
+    
+    .cart-page table.cart-table-product tr.cart-table-content {
+        padding: 0 15px;
+    }
+    
+    .cart-page table.cart-table-product tr.cart-table-content p {
+        margin: 0;
+    }
+    
+    .cart-page table.cart-table-product .cart-table-mobile {
+        display: none;
+    }
+    
+    @media screen and (max-width: 1023px) {
+        .cart-page table.cart-table-product .cart-table-mobile {
+            display: table-row;
+        }
+    }
+    
+    .cart-page table.cart-table-product .cart-table-mobile:hover {
+        background: #ffffff;
+    }
+    
+    .cart-page table.cart-table-product .cart-table-mobile.cart-table-mobile-bottom td {
+        padding-bottom: 15px;
+    }
+    
+    .cart-page table.cart-table-product .cart-table-mobile.cart-table-mobile-bottom td:after {
+        content: "";
+    }
+    
+    .cart-page table.cart-table-product .cart-table-mobile span {
+        display: inline-block;
+    }
+    
+    .cart-page table.cart-table-product .cart-table-mobile td {
+        padding: 3px 15px;
+    }
+    
+    .cart-page table.cart-table-product .cart-table-mobile td:after {
+        content: none;
+    }
+    
+    .cart-page table.cart-table-product .cart-table-mobile .cart-table-mobile-title {
+        width: 50%;
+        display: inline-block;
+    }
+    
+    @media screen and (max-width: 1023px) {
+        .cart-page table.cart-table-product .cart-table-mobile .cart-table-mobile-title.cart-table-mobile-title-bottom {
+            margin-bottom: 5px;
+        }
+    }
+    
+    .cart-page table.cart-table-product th,
+    .cart-page table.cart-table-product td {
+        padding: 15px;
+        text-align: left;
+    }
+    
+    .cart-page table.cart-table-product th.cart-table-size {
+        max-width: 160px;
+        width: 13.9130434783%;
+    }
+    
+    .cart-page table.cart-table-product th.cart-table-payment {
+        max-width: 300px;
+        width: 26.0869565217%;
+    }
+    
+    .cart-page table.cart-table-product th.cart-table-small-size {
+        max-width: 45px;
+        width: 3.9130434783%;
+    }
+    
+    .cart-page table.cart-table-product th.cart-table-product-name {
+        max-width: 320px;
+        width: 27.8260869565%;
+    }
+    
+    .cart-page table.cart-table-product td {
+        position: relative;
+    }
+    
+    .cart-page table.cart-table-product td:after {
+        content: "";
+        width: 100%;
+        height: 2px;
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        background: #f1f1f1;
+    }
+    
+    .cart-page table.cart-table-product td img {
+        max-width: 130px;
+        max-height: auto;
+        object-fit: cover;
+    }
+    
+    .cart-page table.cart-table-product td.cart-table-icon:after {
+        width: calc(100% - 15px);
+        right: 15px;
+    }
+    
+    @media screen and (max-width: 1023px) {
+        .cart-page table.cart-table-product td.cart-table-icon:after {
+            content: none;
+        }
+    }
+    
+    .cart-page table.cart-table-product td.cart-table-icon i {
+        font-size: 24px;
+    }
+    
+    .cart-page table.cart-table-product td.cart-table-image-info {
+        max-width: 160px;
+        width: 13.9130434783%;
+    }
+    
+    @media screen and (max-width: 1023px) {
+        .cart-page table.cart-table-product td.cart-table-image-info {
+            padding-bottom: 0;
+        }
+    }
+    
+    .cart-page table.cart-table-product td.cart-table-image-info:after {
+        width: calc(100% - 15px);
+        left: 15px;
+    }
+    
+    @media screen and (max-width: 1023px) {
+        .cart-page table.cart-table-product td.cart-table-image-info:after {
+            content: none;
+        }
+    }
+    
+    .cart-page table.cart-table-product td.cart-table-payment-detail {
+        padding: 0 15px;
+    }
+    
+    .cart-page table.cart-table-product td.cart-table-payment-detail:after {
+        content: none;
+    }
+    
+    .cart-page .cart-block-right {
+        text-align: right;
+    }
+    
+    .cart-page .cart-page-discount {
+        padding: 15px;
+        margin-bottom: 15px;
+        display: inline-block;
+        border: 1px solid #cfcaca;
+    }
+    
+    .cart-page .cart-page-input {
+        width: 100%;
+        height: 34px;
+        padding: 0 15px;
+        margin-right: 10px;
+    }
+    
+    .cart-page .cart-page-input::placeholder {
+        font-size: 14px;
+        font-family: "Poppins", sans-serif;
+    }
+    
+    .cart-page .cart-table-bill {
+        margin-bottom: 15px;
+    }
+    
+    @media screen and (max-width: 1023px) {
+        .cart-page .cart-table-desktop {
+            display: none !important;
+        }
+    }
+    
+    @media screen and (max-width: 1023px) {
+        .cart-page .right-text-mobile {
+            text-align: right !important;
+        }
+    }
+    
+    .cart-page .page-order-received .cart-header-notice {
+        margin-bottom: 15px;
+    }
+    
+    .cart-page .cart-order-received {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .cart-page .order-received-col {
+        width: calc(30% - 15px);
+        padding: 0 10%;
+        margin-bottom: 25px;
+        display: inline-block;
+        border-right: 1px solid #cfcaca;
+    }
+    
+    @media screen and (min-width: 768px) {
+        .cart-page .order-received-col {
+            width: auto;
+            padding: 0 40px;
+        }
+    }
+    
+    @media screen and (min-width: 768px) {
+        .cart-page .order-received-col:first-child {
+            padding-left: 0;
+        }
+    }
+    
+    .cart-page .order-received-col:last-child {
+        border: 0;
+    }
+    
+    .cart-page .order-received-col.received-col-mobile {
+        border-width: 0;
+    }
+    
+    @media screen and (min-width: 768px) {
+        .cart-page .order-received-col.received-col-mobile {
+            border-width: 1px;
+        }
+    }
+    
+    .cart-page .order-received-col span {
+        display: block;
+    }
+    
+    .checkout:hover {
+        background-color: #6aca6b;
+    }
+</style>

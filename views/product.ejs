@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HQM Glasses</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
+    <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+    <meta name="author" content="FREEHTML5.CO" />
+
+
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:site_name" content="" />
+    <meta property="og:description" content="" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:image" content="" />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:card" content="" />
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="css/animate.css">
+
+    <link rel="stylesheet" href="css/icomoon.css">
+
+
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <script src="js/modernizr-2.6.2.min.js"></script>
+
+
+
+</head>
+
+<body>
+    <div class="box-wrap">
+        <header role="banner" id="fh5co-header">
+            <div class="container">
+                <nav class="navbar navbar-default">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="fh5co-navbar-brand">
+                                <a class="fh5co-logo" href="../views/index.ejs">HQM Glasses</a>
+                            </div>
+                        </div>
+                        <div class="col-md-9 main-nav">
+                            <ul class="nav text-right">
+                                <nav>
+                                    <li><a href="/"><span>Home</span></a></li>
+                                    <li class="active"><a href="/product">Products</a></li>
+                                    <li><a href="#footer">About</a></li>
+                                    <li><a href="/contact">Contact</a></li>
+
+                                    <li class="dropdown">
+                                        <a href="#">Account</a>
+                                        <ul class="dropdown-menu">
+                                            <% if (req.session.user) { %>
+                                                <div>
+                                                    <li>Xin chào! <%=req.session.user.name %>
+                                                    </li><br>
+                                                    <li><a href="/cart">Giỏ hàng</a></li><br>
+                                                    <li><a href="/logout">Đăng xuất</a></li><br>
+                                                </div>
+                                                <% } else { %>
+                                                    <li><a href="/login">Đăng nhập</a></li><br>
+                                                    <li><a href="/register">Đăng ký</a></li>
+                                                    <% } %>
+                                        </ul>
+                                    </li>
+                                </nav>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!-- END: header -->
+
+
+        <div class="row1" style="box-shadow: 0 0 10px rgba(224, 218, 218, 0.5); padding: 80px 0px; border-radius: 30px;">
+            <div class="col-md-6">
+                <div id="slider" class="owl-carousel product-slider">
+                    <div class="item">
+                        <img style="height: 370px; width: 350px; margin: auto; border-radius: 5px;" src="<%= product.image %>" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="product-dtl-bao" style="text-align: left;">
+                    <div class="product-info-bao">
+                        <div class="product-name">
+                            <%= product.name %>
+                        </div>
+                        <p>(10 đánh giá)</p>
+                        <div class="product-price-discount-bao">
+                            <span>$<%= product.price %></span>
+                            <!-- <span class="line-through">$29.00</span> -->
+                        </div>
+                    </div>
+                    <div>Mô tả: </div>
+                    <p style="margin-left: 20px;">
+                        <%= product.description %>
+                    </p>
+                    <div>Danh mục sản phẩm: </div>
+                    <p style="margin-left: 20px;">
+                        <%= product.category.name%>
+                    </p>
+                    <div class="product-count-bao">
+                        <!-- <a href="#" class="round-black-btn-bao">Thêm vào giỏ</a> -->
+                        <form method="POST" action="/cart/add/<%= product._id %>">
+                            <button style="border-radius: 10px;" type="submit" class="button button-xs button-primary button-winona">Mua hàng</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <footer>
+            <div id="footer" class="fh5co-border-line">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3 text-center">
+                            <p>Bạn muốn mua kính? Hãy <a href="/contact">liên hệ</a> với chúng tôi. <br>Made with <i class="icon-heart3 love"></i> by HQM
+                                </a>
+                                <p class="fh5co-social-icons">
+                                    <a href="#"><i class="icon-twitter-with-circle"></i></a>
+                                    <a href="#"><i class="icon-facebook-with-circle"></i></a>
+                                    <a href="#"><i class="icon-instagram-with-circle"></i></a>
+                                </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- END: box-wrap -->
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <!-- jQuery Easing -->
+    <script src="js/jquery.easing.1.3.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Owl carousel -->
+    <script src="js/owl.carousel.min.js"></script>
+    <!-- Waypoints -->
+    <script src="js/jquery.waypoints.min.js"></script>
+    <!-- Parallax Stellar -->
+    <script src="js/jquery.stellar.min.js"></script>
+
+    <!-- Main JS (Do not remove) -->
+    <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="	sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
+
+<style>
+    .message-box {
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(96, 95, 95, 0.5);
+        padding: 7px 10px;
+        display: flex;
+        align-items: flex-start;
+        width: 100%;
+    }
+    
+    .message-box:hover {
+        background-color: var(--message-box-hover);
+        border-top-color: var(--link-color-hover);
+    }
+    
+    .message-box:hover+.message-box {
+        border-top-color: var(--link-color-hover);
+    }
+    
+    .message-box img {
+        border-radius: 50%;
+        -o-object-fit: cover;
+        object-fit: cover;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .message-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+    
+    .message-header .name {
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 700;
+        color: var(--main-color);
+        margin: 0;
+    }
+    
+    .message-content {
+        padding-left: 16px;
+        width: 100%;
+    }
+    
+    .star-checkbox input {
+        opacity: 0;
+        position: absolute;
+        width: 0;
+        height: 0;
+    }
+    
+    .star-checkbox label {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    
+    .dark .star-checkbox {
+        color: var(--secondary-color);
+    }
+    
+    .dark .star-checkbox input:checked+label {
+        color: var(--star);
+    }
+    
+    .star-checkbox input:checked+label svg {
+        fill: var(--star);
+        transition: 0.2s;
+    }
+    
+    .message-line {
+        font-size: 14px;
+        line-height: 20px;
+        margin: 8px 0;
+        color: var(--secondary-color);
+        opacity: 0.7;
+    }
+    
+    .message-line.time {
+        text-align: right;
+        margin-bottom: 0;
+    }
+    
+    a:hover {
+        text-decoration: none;
+    }
+    
+    .heading-section-bao {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .heading-section-bao h2 {
+        font-size: 32px;
+        font-weight: 500;
+        padding-top: 10px;
+        padding-bottom: 15px;
+    }
+    
+    .owl-nav-bao button {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        outline: none;
+        height: 25px;
+    }
+    
+    .owl-nav-bao button svg {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .owl-nav-bao button.owl-prev {
+        left: 25px;
+    }
+    
+    .owl-nav-bao button.owl-next {
+        right: 25px;
+    }
+    
+    .owl-nav-bao button span {
+        font-size: 45px;
+    }
+    
+    .product-thumb .item img {
+        height: 100px;
+    }
+    
+    .product-name {
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 22px;
+        margin-bottom: 4px;
+    }
+    
+    .product-price-discount-bao {
+        font-size: 22px;
+        font-weight: 400;
+        padding: 10px 0;
+        clear: both;
+    }
+    
+    .product-price-discount-bao span.line-through {
+        text-decoration: line-through;
+        margin-left: 10px;
+        font-size: 14px;
+        vertical-align: middle;
+        color: #a5a5a5;
+    }
+    
+    .display-flex-bao {
+        display: flex;
+    }
+    
+    .product-info-bao {
+        width: 100%;
+    }
+    
+    .reviews-counter-bao {
+        font-size: 13px;
+    }
+    
+    .reviews-counter-bao span {
+        vertical-align: -2px;
+    }
+    
+    .rating {
+        float: left;
+        padding: 0 10px 0 0;
+    }
+    
+    .rating:not(:checked)>input {
+        position: absolute;
+        top: -9999px;
+    }
+    
+    .rating:not(:checked)>label {
+        float: right;
+        width: 15px;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        font-size: 21px;
+        color: #ccc;
+        margin-bottom: 0;
+        line-height: 21px;
+    }
+    
+    .rating:not(:checked)>label:before {
+        content: '\2605';
+    }
+    
+    .rating>input:checked~label {
+        color: #ffc700;
+    }
+    
+    .rating:not(:checked)>label:hover,
+    .rating:not(:checked)>label:hover~label {
+        color: #deb217;
+    }
+    
+    .rating>input:checked+label:hover,
+    .rating>input:checked+label:hover~label,
+    .rating>input:checked~label:hover,
+    .rating>input:checked~label:hover~label,
+    .rating>label:hover~input:checked~label {
+        color: #c59b08;
+    }
+    
+    .rating .half:before {
+        content: '\2605';
+        position: absolute;
+        padding-right: 3px;
+    }
+    
+    .rating input:checked+label.half:before {
+        content: '\2605';
+        color: #ffc700;
+    }
+    
+    .product-dtl-bao p {
+        font-size: 14px;
+        line-height: 24px;
+        color: #7a7a7a;
+    }
+    
+    .product-dtl-bao .form-control {
+        font-size: 15px;
+    }
+    
+    .product-dtl-bao label {
+        line-height: 16px;
+        font-size: 15px;
+    }
+    
+    .form-control:focus {
+        outline: none;
+        box-shadow: none;
+    }
+    
+    .product-count-bao {
+        margin-top: 15px;
+    }
+    
+    .product-count-bao .qtyminus,
+    .product-count-bao .qtyplus {
+        width: 34px;
+        height: 34px;
+        background: #212529;
+        text-align: center;
+        font-size: 19px;
+        line-height: 36px;
+        color: #fff;
+        cursor: pointer;
+    }
+    
+    .product-count-bao .qtyminus {
+        border-radius: 3px 0 0 3px;
+    }
+    
+    .product-count-bao .qtyplus {
+        border-radius: 0 3px 3px 0;
+    }
+    
+    .product-count-bao .qty {
+        width: 60px;
+        text-align: center;
+    }
+    
+    .round-black-btn-bao {
+        border-radius: 4px;
+        background: #212529;
+        color: #fff;
+        padding: 7px 45px;
+        display: inline-block;
+        margin-top: 20px;
+        border: solid 2px #212529;
+        transition: all 0.5s ease-in-out 0s;
+    }
+    
+    .round-black-btn-bao:hover,
+    .round-black-btn-bao:focus {
+        background: transparent;
+        color: #212529;
+        text-decoration: none;
+    }
+    
+    .product-info-bao-tabs {
+        margin-top: 25px;
+    }
+    
+    .product-info-bao-tabs .nav-tabs {
+        border-bottom: 2px solid #d8d8d8;
+    }
+    
+    .product-info-bao-tabs .nav-tabs .nav-item {
+        margin-bottom: 0;
+    }
+    
+    .product-info-bao-tabs .nav-tabs .nav-link {
+        border: none;
+        border-bottom: 2px solid transparent;
+        color: #323232;
+    }
+    
+    .product-info-bao-tabs .nav-tabs .nav-item .nav-link:hover {
+        border: none;
+    }
+    
+    .product-info-bao-tabs .nav-tabs .nav-item.show .nav-link,
+    .product-info-bao-tabs .nav-tabs .nav-link.active,
+    .product-info-bao-tabs .nav-tabs .nav-link.active:hover {
+        border: none;
+        border-bottom: 2px solid #d8d8d8;
+        font-weight: bold;
+    }
+    
+    .product-info-bao-tabs .tab-content .tab-pane {
+        padding: 30px 20px;
+        font-size: 15px;
+        line-height: 24px;
+        color: #7a7a7a;
+    }
+    
+    .review-form-bao .form-group {
+        clear: both;
+    }
+    
+    .mb-20 {
+        margin-bottom: 20px;
+    }
+    
+    .review-form-bao .rating {
+        float: none;
+        display: inline-block;
+    }
+    
+    .review-heading {
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 24px;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        color: #000;
+    }
+    
+    .review-form-bao .form-control {
+        font-size: 14px;
+    }
+    
+    .review-form-bao input.form-control {
+        height: 40px;
+    }
+    
+    .review-form-bao textarea.form-control {
+        resize: none;
+    }
+    
+    .review-form-bao .round-black-btn-bao {
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    $(document).ready(function() {
+        var slider = $("#slider");
+        var thumb = $("#thumb");
+        var slidesPerPage = 4; //globaly define number of elements per page
+        var syncedSecondary = true;
+        slider.owlCarousel({
+            items: 1,
+            slideSpeed: 2000,
+            nav: false,
+            autoplay: false,
+            dots: false,
+            loop: true,
+            responsiveRefreshRate: 200
+        }).on('changed.owl.carousel', syncPosition);
+        thumb
+            .on('initialized.owl.carousel', function() {
+                thumb.find(".owl-item").eq(0).addClass("current");
+            })
+            .owlCarousel({
+                items: slidesPerPage,
+                dots: false,
+                nav: true,
+                item: 4,
+                smartSpeed: 200,
+                slideSpeed: 500,
+                slideBy: slidesPerPage,
+                navText: ['<svg width="18px" height="18px" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 1px;stroke: #000;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>', '<svg width="25px" height="25px" viewBox="0 0 11 20" version="1.1"><path style="fill:none;stroke-width: 1px;stroke: #000;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'],
+                responsiveRefreshRate: 100
+            }).on('changed.owl.carousel', syncPosition2);
+
+        function syncPosition(el) {
+            var count = el.item.count - 1;
+            var current = Math.round(el.item.index - (el.item.count / 2) - .5);
+            if (current < 0) {
+                current = count;
+            }
+            if (current > count) {
+                current = 0;
+            }
+            thumb
+                .find(".owl-item")
+                .removeClass("current")
+                .eq(current)
+                .addClass("current");
+            var onscreen = thumb.find('.owl-item.active').length - 1;
+            var start = thumb.find('.owl-item.active').first().index();
+            var end = thumb.find('.owl-item.active').last().index();
+            if (current > end) {
+                thumb.data('owl.carousel').to(current, 100, true);
+            }
+            if (current < start) {
+                thumb.data('owl.carousel').to(current - onscreen, 100, true);
+            }
+        }
+
+        function syncPosition2(el) {
+            if (syncedSecondary) {
+                var number = el.item.index;
+                slider.data('owl.carousel').to(number, 100, true);
+            }
+        }
+        thumb.on("click", ".owl-item", function(e) {
+            e.preventDefault();
+            var number = $(this).index();
+            slider.data('owl.carousel').to(number, 300, true);
+        });
+
+
+        $(".qtyminus").on("click", function() {
+            var now = $(".qty").val();
+            if ($.isNumeric(now)) {
+                if (parseInt(now) - 1 > 0) {
+                    now--;
+                }
+                $(".qty").val(now);
+            }
+        })
+        $(".qtyplus").on("click", function() {
+            var now = $(".qty").val();
+            if ($.isNumeric(now)) {
+                $(".qty").val(parseInt(now) + 1);
+            }
+        });
+    });
+
+
+
+    const starRating = document.getElementById('star-rating');
+
+    if (starRating) {
+        const stars = starRating.querySelectorAll('input[type="radio"]');
+
+        for (const star of stars) {
+            star.addEventListener('change', function() {
+                // Lấy giá trị ngôi sao được chọn
+                const selectedValue = parseInt(this.value);
+
+                // Loại bỏ tất cả các lớp đã được đặt trước đó
+                for (let i = 1; i <= 5; i++) {
+                    const starLabel = starRating.querySelector(`label[for="star${i}"]`);
+                    starLabel.classList.remove('filled');
+                }
+
+                // Đặt lại các lớp cho các ngôi sao
+                for (let i = 1; i <= selectedValue; i++) {
+                    const starLabel = starRating.querySelector(`label[for="star${i}"]`);
+                    starLabel.classList.add('filled');
+                }
+            });
+        }
+    }
+</script>

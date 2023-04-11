@@ -1,0 +1,22 @@
+[{
+        "name": "A00",
+        "description": "Mắt kính nữ",
+        "price": 280000,
+        "image": "images/A00.png",
+        "category": "Mắt kính nữ"
+    },
+    {
+        "name": "A25",
+        "description": "Mắt kính nam",
+        "price": 290000,
+        "image": "images/A25.png",
+        "category": "Mắt kính nữ"
+    },
+    {
+        "name": "E02",
+        "description": "Mắt kính trẻ em",
+        "price": 200000,
+        "image": "images/E02.png",
+        "category": "Mắt kính trẻ em"
+    }
+]

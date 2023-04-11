@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HQM Glasses</title>
+    <link rel="stylesheet" href="../layout_admin/assets/css/styles.min.css" />
+</head>
+
+<body>
+    <!--  Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+        <!-- Sidebar Start -->
+        <aside class="left-sidebar" style=" box-shadow: 0 0 10px rgba(103, 100, 100, 0.5);">
+            <!-- Sidebar scroll-->
+            <div>
+                <div class="brand-logo d-flex align-items-center justify-content-between">
+                    <a href="./index.html" class="text-nowrap logo-img">
+                        <img style="margin-top: 20px;" src="" width="220" alt="" />
+                    </a>
+                </div>
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+                    <ul id="sidebarnav">
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Trang Chủ</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/admin" aria-expanded="false">
+                                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                                <span class="hide-menu">Bảng điều khiển</span>
+                            </a>
+                        </li>
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Sản Phẩm</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/admin/list-category" aria-expanded="false">
+                                <span>
+                  <i class="ti ti-category-2"></i>
+                </span>
+                                <span class="hide-menu">Danh mục sản phẩm</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/admin/create-category" aria-expanded="false">
+                                <span>
+                  <i class="ti ti-text-plus"></i>
+                </span>
+                                <span class="hide-menu">Thêm danh mục mới</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/admin/list-product" aria-expanded="false">
+                                <span>
+                  <i class="ti ti-clipboard-list"></i>
+                </span>
+                                <span class="hide-menu">Danh sách sản phẩm</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/admin/create-product" aria-expanded="false">
+                                <span>
+                  <i class="ti ti-text-plus"></i>
+                </span>
+                                <span class="hide-menu">Thêm sản phẩm mới</span>
+                            </a>
+                        </li>
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Đặt Hàng</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/admin/order" aria-expanded="false">
+                                <span>
+                  <i class="ti ti-receipt-2"></i>
+                </span>
+                                <span class="hide-menu">Đơn hàng</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/admin/list-contact" aria-expanded="false">
+                                <span>
+                  <i class="ti ti-device-mobile-message"></i>
+                </span>
+                                <span class="hide-menu">Liên hệ</span>
+                            </a>
+                        </li>
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Người dùng</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/admin/list-user" aria-expanded="false">
+                                <span>
+                  <i class="ti ti-users"></i>
+                </span>
+                                <span class="hide-menu">Danh sách người dùng</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!--  Sidebar End -->
+        <!--  Main wrapper -->
+        <div class="body-wrapper">
+            <!--  Header Start -->
+            <header class="app-header">
+                <nav class="navbar navbar-expand-lg navbar-light" style=" box-shadow: 0 0 10px rgba(103, 100, 100, 0.5); border-radius: 8px;">
+                    <ul class="navbar-nav">
+                        <li class="nav-item d-block d-xl-none">
+                            <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                                <i class="ti ti-menu-2"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-icon-hover" href="javascript:void(0)">
+                                <i class="ti ti-bell-ringing"></i>
+                                <div class="notification bg-primary rounded-circle"></div>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+                        <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+                            <a href="/" target="_blank" class="btn btn-primary">Trang chủ</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="<%= req.session.user.image %>" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                                    <div class="message-body">
+                                        <a href="/admin/profile/<%= req.session.user.id %>" class="d-flex align-items-center gap-2 dropdown-item">
+                                            <i class="ti ti-user fs-6"></i>
+                                            <p class="mb-0 fs-3">Thông tin</p>
+                                        </a>
+                                        <a href="/logout" class="btn btn-outline-primary mx-3 mt-2 d-block">Đăng xuất</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <!--  Header End -->
+            <div class="container-fluid">
+                <div class="col-lg-12 d-flex align-items-stretch">
+                    <div class="card w-100" style=" box-shadow: 0 0 10px rgba(103, 100, 100, 0.5); border-radius: 8px;">
+                        <div class="card-body p-4">
+                            <h2 style="color: blue;" class="card-title fw-semibold mb-4">Danh sách người dùng</h2>
+                            <div class="table-responsive">
+                                <table class="table text-nowrap mb-0 align-middle">
+                                    <thead class="text-dark fs-4">
+                                        <tr>
+                                            <th class="border-bottom-0">
+                                                <h6 class="fw-semibold mb-0">Mã đơn hàng</h6>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h6 class="fw-semibold mb-0">Tên khách hàng</h6>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h6 class="fw-semibold mb-0">Tổng tiền</h6>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h6 class="fw-semibold mb-0">Hình thức thanh toán</h6>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h6 class="fw-semibold mb-0">Trạng thái</h6>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h6 class="fw-semibold mb-0"></h6>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h6 class="fw-semibold mb-0"></h6>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% orders.forEach(function(order) { %>
+                                            <tr>
+                                                <td class="border-bottom-0" style="width: 20%;">
+                                                    <h6 class="fw-semibold mb-1">
+                                                        <%= order.id %>
+                                                    </h6>
+                                                </td>
+                                                <td class="border-bottom-0">
+                                                    <h6 class="fw-semibold mb-1">
+                                                        <%= order.name %>
+                                                    </h6>
+                                                </td>
+                                                <td class="border-bottom-0">
+                                                    <h6 class="fw-semibold mb-1">
+                                                        <%= order.cart.totalPrice %>
+                                                    </h6>
+                                                </td>
+                                                <td class="border-bottom-0">
+                                                    <h6 class="fw-semibold mb-1">
+                                                        <%= order.paymentMethod %>
+                                                    </h6>
+                                                </td>
+                                                <td class="border-bottom-0">
+                                                    <h6 class="fw-semibold mb-1">
+                                                        <%= order.status %>
+                                                    </h6>
+                                                </td>
+                                                <% if(order.status === 'Pending'){%>
+                                                    <td class="border-bottom-0" style="width: 20px;">
+                                                        <div class="d-flex align-items-center gap-2">
+                                                            <a style="float: left; margin-left: 20px;" href="/admin/edit-user/<%= order.id %>" class="btn btn-primary">Nhận đơn</a>
+                                                        </div>
+                                                    </td>
+                                                    <td class="border-bottom-0" style="width: 20px;">
+                                                        <form action="/admin/delete-user/<%= order.id %>" method="POST">
+                                                            <input type="hidden" name="_method" value="DELETE">
+                                                            <button type="submit" style="float:right; margin-right: 10px; background-color: red;" href="" class="btn btn-primary">Từ chối</button>
+                                                        </form>
+                                                    </td>
+                                                    <% }else if(order.status === 'Processing'){ %>
+                                                        <td class="border-bottom-0" style="width: 20px;">
+                                                            <div class="d-flex align-items-center gap-2">
+                                                                <a style="float: left; margin-left: 20px;" href="/admin/edit-user/<%= order.id %>" class="btn btn-primary">Đang giao</a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="border-bottom-0" style="width: 20px;">
+                                                            <form action="/admin/delete-user/<%= order.id %>" method="POST">
+                                                                <input type="hidden" name="_method" value="DELETE">
+                                                                <button type="submit" style="float:right; margin-right: 10px; background-color: red;" href="" class="btn btn-primary">Hủy đơn</button>
+                                                            </form>
+                                                        </td>
+                                                        <% }else if(order.status === 'Shipped'){ %>
+                                                            <td class="border-bottom-0" style="width: 20px;">
+                                                                <div class="d-flex align-items-center gap-2">
+                                                                    <a style="float: left; margin-left: 20px;" href="/admin/edit-user/<%= order.id %>" class="btn btn-primary">Hoàn tất</a>
+                                                                </div>
+                                                            </td>
+                                                            <td class="border-bottom-0" style="width: 20px;">
+                                                                <form action="/admin/delete-user/<%= order.id %>" method="POST">
+                                                                    <input type="hidden" name="_method" value="DELETE">
+                                                                    <button type="submit" style="float:right; margin-right: 10px; background-color: red;" href="" class="btn btn-primary">Hủy đơn</button>
+                                                                </form>
+                                                            </td>
+                                                            <% } %>
+                                            </tr>
+                                            <% }); %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../layout_admin/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../layout_admin/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../layout_admin/assets/js/sidebarmenu.js"></script>
+    <script src="../layout_admin/assets/js/app.min.js"></script>
+    <script src="../layout_admin/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="../layout_admin/assets/libs/simplebar/dist/simplebar.js"></script>
+    <script src="../layout_admin/assets/js/dashboard.js"></script>
+</body>
+
+</html>

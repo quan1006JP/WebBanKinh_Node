@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HQM Glasses</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
+    <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+    <meta name="author" content="FREEHTML5.CO" />
+
+
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:site_name" content="" />
+    <meta property="og:description" content="" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:image" content="" />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:card" content="" />
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="css/animate.css">
+    <!-- Icomoon Icon Fonts-->
+
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/main.css.css">
+
+    <!-- Bootstrap  -->
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!-- Owl Carousel -->
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fontsmain.css">
+
+
+    <!-- Modernizr JS -->
+    <script src="js/modernizr-2.6.2.min.js"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+
+<body>
+    <div class="box-wrap">
+        <header role="banner" id="fh5co-header">
+            <div class="container">
+                <nav class="navbar navbar-default">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="fh5co-navbar-brand">
+                                <a class="fh5co-logo" href="/">HQM Glasses</a>
+                            </div>
+                        </div>
+                        <div class="col-md-9 main-nav">
+                            <ul class="nav text-right">
+                                <nav>
+                                    <li><a href="/"><span>Home</span></a></li>
+                                    <li class="active"><a href="/product">Products</a></li>
+                                    <li><a href="#footer">About</a></li>
+                                    <li><a href="/contact">Contact</a></li>
+
+                                    <li class="dropdown">
+                                        <a href="#">Account</a>
+                                        <ul class="dropdown-menu">
+                                            <% if (req.session.user) { %>
+                                                <div>
+                                                    <li>Xin chào! <%=req.session.user.name %>
+                                                    </li><br>
+                                                    <li><a href="/cart">Giỏ hàng</a></li><br>
+                                                    <li><a href="/logout">Đăng xuất</a></li><br>
+                                                </div>
+                                                <% } else { %>
+                                                    <li><a href="/login">Đăng nhập</a></li><br>
+                                                    <li><a href="/register">Đăng ký</a></li>
+                                                    <% } %>
+                                        </ul>
+                                    </li>
+                                </nav>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!-- END: header -->
+        <div id="fh5co-intro-section" class="section-overlay animate-box" data-animate-effect="fadeIn">
+            <div class="fh5co-intro-cover text-center" data-stellar-background-ratio="0.5" style="background-image: url(images/bg.jpg);">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 float-overlay">
+                            <h2>Our Products</h2>
+                            <h3>HQM Glasses hiện có 3 dòng sản phẩm dưới đây</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END fh5co-intro-section -->
+        <!-- <div id="fh5co-product-section">
+            <div class="container">
+                <div class="row">
+                    <div class="product-inner">
+                        <div class="col-md-4 animate-box">
+                            <div class="desc">
+                                <h3><a href="/matKinhNu">MẮT KÍNH NỮ</a></h3>
+                                <p>Đa dạng mẫu mã từ kính cận đến kính mát, phù hợp với nhiều gương mặt che đi khuyết điểm trên gương mặt giúp các quý cô không còn tự ti. Giúp các quý cô tô điểm thêm vẻ đẹp kiêu sa mỗi khi ra đường. </p>
+                            </div>
+                        </div>
+                        <div class="col-md-8 animate-box">
+                            <figure>
+                                <a href="/matKinhNu"><img class="img-responsive" src="images/nu.jpg" alt="product" style="margin-top: 30px;"></a>
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="product-inner">
+                        <div class="col-md-4 col-md-push-8 animate-box">
+                            <div class="desc">
+                                <h3><a href="#">MẮT KÍNH NAM</a></h3>
+                                <p>Vẻ lịch lãm của các quý ông sẽ được nhấn nhá điệu nghệ bằng một chiếc kính vừa lịch sự vừa trang trọng lại còn hợp thời trang.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-md-pull-4 animate-box">
+                            <figure>
+                                <a href="#"><img class="img-responsive" src="images/nam.webp" alt="product" style="margin-top: 50px" ;></a>
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="product-inner">
+                        <div class="col-md-4 animate-box">
+                            <div class="desc">
+                                <h3><a href="#">MẮT KÍNH TRẺ EM</a></h3>
+                                <p>Bảo vệ đôi mắt của các bé từ nhỏ được rất nhiều phụ huynh quan tâm, vì lẽ đó HQM team đã cố gắng lựa chọn ra những mẫu kính có chất lượng tốt nhất để bảo vệ đôi mắt của các bảo bối bằng những chiếc kính đáng yêu.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-8 animate-box">
+                            <figure>
+                                <a href="#"><img class="img-responsive" src="images/treem.jpg" alt="product" style="margin-left: 150px; margin-top: 30px;" ;></a>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- product -->
+        <div class="container product_section_container">
+            <div class="row">
+                <div class="col product_section clearfix ">
+
+                    <div class="sidebar">
+                        <div>
+                            <div class="sidebar_title">
+                                <h5 style="color: #a980cd; font-size: 30px; font-weight: 700;">Danh mục sản phẩm</h5>
+                            </div>
+                            <ul class="list-category list-category-down-md-inline-block">
+                                <% categories.forEach(function(category) { %>
+                                    <li class="list-category-item wow fadeInRight" role="presentation" data-wow-delay="0s">
+                                        <a href="#" style="font-size: 20px; font-weight: 500;">
+                                            <%= category.name %>
+                                        </a>
+                                    </li>
+                                    <% }); %>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Main Content -->
+
+                    <div class="main_content">
+                        <!-- Our Shop-->
+                        <section class="section section-lg bg-default">
+                            <div class="container">
+                                <div class="row row-lg row-30">
+                                    <% products.forEach(function(product) { %>
+                                        <div class="col-sm-6 col-lg-4 col-xl-3">
+                                            <!-- Product-->
+                                            <article class="product wow fadeInLeft" data-wow-delay=".15s">
+                                                <div class="product-figure"><img src="<%= product.image %>" style="min-height: 192px; min-width: 192px; margin-left: 10px;" alt="" width="161" height="162" />
+                                                </div>
+
+                                                <h6 class="product-title" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 20px; margin: 9px 0 0 10px;">
+                                                    <%= product.name %>
+                                                </h6>
+                                                <div class="product-price-wrap">
+                                                    <div class="product-price product-price-old">
+                                                    </div>
+                                                    <div class="product-price">
+                                                        $
+                                                        <%= product.price %>
+                                                    </div>
+                                                </div>
+                                                <div class="product-button">
+                                                    <div class="button-wrap">
+                                                        <!-- <a class="button button-xs button-primary button-winona" href="/cart/<%= product._id%>">Thêm vào giỏ hàng</a> -->
+                                                        <form method="POST" action="/cart/add/<%= product._id %>">
+                                                            <button type="submit" class="button button-xs button-primary button-winona">Thêm vào giỏ hàng</button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="button-wrap">
+                                                        <a class="button button-xs button-secondary button-winona" href="/product/<%= product._id%>">Chi tiết sản phẩm</a>
+                                                    </div>
+                                                </div><span class="product-badge product-badge-new">HQM New</span>
+                                            </article>
+                                        </div>
+                                        <% });                                     %>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div id="footer" class="fh5co-border-line">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3 text-center">
+                            <p>Bạn muốn mua kính? Hãy <a href="/contact">liên hệ</a> với chúng tôi. <br>Made with <i class="icon-heart3 love"></i> by HQM
+                                </a>
+                                <p class="fh5co-social-icons">
+                                    <a href="#"><i class="icon-twitter-with-circle"></i></a>
+                                    <a href="#"><i class="icon-facebook-with-circle"></i></a>
+                                    <a href="#"><i class="icon-instagram-with-circle"></i></a>
+                                </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- END: box-wrap -->
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <!-- jQuery Easing -->
+    <script src="js/jquery.easing.1.3.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Owl carousel -->
+    <script src="js/owl.carousel.min.js"></script>
+    <!-- Waypoints -->
+    <script src="js/jquery.waypoints.min.js"></script>
+    <!-- Parallax Stellar -->
+    <script src="js/jquery.stellar.min.js"></script>
+
+    <!-- Main JS (Do not remove) -->
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
